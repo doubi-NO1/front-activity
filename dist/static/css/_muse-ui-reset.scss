@@ -1,0 +1,34 @@
+.mu-appbar,.mu-bottom-nav-shift{
+    background-color: $main-color;
+}
+.mu-appbar-title{
+    text-align: center;
+}
+.mu-buttom-item{
+    line-height: 25px;
+}
+.mu-item-content,.mu-item-title-row{
+    position: relative;
+}
+.mu-date-display{
+    background: $main-color;
+}
+.mu-day-button-bg{
+    background: $main-color;
+}
+.mu-flat-button-primary{
+    color: $main-color;
+}
+.mu-day-button{
+    line-height: 26px;
+}
+.mu-menu-item-wrapper.active{
+    color: $main-color;
+}
+.mu-switch input[type=checkbox]:checked + .mu-switch-wrapper .mu-switch-thumb{
+    background-color: $main-color;
+    color: $main-color;
+}
+.mu-switch input[type=checkbox]:checked + .mu-switch-wrapper .mu-switch-track{
+    background-color: $main-color;
+}

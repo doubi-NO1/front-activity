@@ -1,0 +1,193 @@
+body{
+	font-size: $font-size;
+	font-family: $font-family;
+	color: $font-color;
+}
+ul,ol{
+	padding-left: 0;
+	list-style: none;
+}
+img{
+	border:0;
+}
+a{
+	text-decoration: none;
+}
+button{
+	outline: none;
+	line-height: 34px;
+}
+
+%f-l {
+	float:left;
+}
+%f-r{
+	float: right;
+}
+%c-b{
+	clear: both;
+}
+%f-w-n{
+	font-weight: normal;
+}
+%f-s-n{
+	font-style: normal;
+}
+%f-w-b{
+	font-weight: bold;
+}
+%f-s-i{
+	font-style: italic;
+}
+%t-a-c{
+	text-align: center;
+}
+%t-a-l{
+	text-align: left;
+}
+%t-a-r{
+	text-align: right;
+}
+%t-d-u{
+	text-decoration: underline;
+}
+%t-d-n{
+	text-decoration: none;
+}
+%v-a-m{
+	vertical-align: middle;
+}
+%v-a-t-b{
+	vertical-align: text-bottom;
+}
+%v-a-t{
+	vertical-align: top;
+}
+%p-r{
+	position: relative;
+}
+%p-a{
+	position: absolute;
+}
+%p-f{
+	position: fixed;
+}
+%d-n{
+	display: none;
+}
+%d-i{
+	display: inline;
+}
+%d-b{
+	display: block;
+}
+%d-i-b{
+	display: inline-block;
+}
+%d-f{
+	display: flex;
+}
+%o-h{
+	overflow: hidden;
+}
+%o-s{
+	overflow: scroll;
+}
+%v-v{
+	visibility: visible;
+}
+%v-h{
+	visibility: hidden;
+}
+%o-n{
+	outline: none;
+}
+%z-1{
+	_zoom:1;
+}
+%f-1{
+	flex:1;
+}
+%j-c-s-b{
+	justify-content: space-between;
+}
+%j-c-c{
+	justify-content: center;
+}
+%j-c-f-e{
+	justify-content: flex-end;
+}
+%m-a{
+	margin: 0 auto;
+}
+// 三角形（边框法）
+@mixin triangle($direction, $size, $borderColor) {
+    overflow:hidden;
+    width:0;
+    height:0;
+    @if $direction == top {
+        border-bottom:$size solid $borderColor;
+        border-left:$size dashed transparent;
+        border-right:$size dashed transparent;
+    } @else if $direction == right {
+        border-left:$size solid $borderColor;
+        border-top:$size dashed transparent;
+        border-bottom:$size dashed transparent;
+    } @else if $direction == bottom {
+        border-top:$size solid $borderColor;
+        border-left:$size dashed transparent;
+        border-right:$size dashed transparent;
+        border-bottom:$size dashed transparent;
+    } @else if $direction == left {
+        border-right:$size solid $borderColor;
+        border-top:$size dashed transparent;
+        border-bottom:$size dashed transparent;
+    }
+}
+@mixin placeholder($color: #ccc) {
+    &::-webkit-input-placeholder {
+        color: $color;
+    }
+    &::-moz-placeholder {
+        color: $color;
+    }
+    &:-moz-placeholder {
+        color: $color;
+    }
+    &:-ms-input-placeholder {
+        color: $color;
+    }
+}
+%placeholder {
+    @include placeholder($placeholode);
+}
+input{
+	border: #d8dcde solid 1px;
+	margin: 0;
+	padding: 0;
+	outline: 0;
+	@extend %placeholder;
+	height: 38px;
+	line-height: 38px;
+	padding:0 12px;
+	color: $font-color;
+	border-radius: 4px;
+	box-sizing: border-box;
+	font-family: $font-family;
+}
+select{
+	outline: 0;
+}
+textarea{
+	border: #d8dcde solid 1px;
+	border-radius: 4px;
+	padding:14px;
+	resize: none;
+	outline: none;
+	box-sizing: border-box;
+	font-family: $font-family;
+}
+
+
+
+

@@ -1,0 +1,112 @@
+.app-page{
+    .mu-appbar{
+        .right{
+            width: 56px;
+        }
+        .left{
+            width: 56px;
+        }
+        i.mu-icon{
+            color: #fff;
+        }
+    }
+    .app-content{
+        .list-num{
+            @extend %p-a;   
+            top:0;
+            right:0;
+            color: #fff;
+            &:after{
+                content: "";
+                @extend %p-a;
+                top: -5px;
+                left: -8px;
+                width: 24px;
+                height: 24px;
+                border-radius: 12px;
+                background-color: $main-color;
+                z-index: -1;
+            }
+        }
+        .group-num{
+            @extend %p-a;
+            top:0;
+            right:10px;
+            color: #fff;
+            &:after{
+                content: "";
+                @extend %p-a;
+                top: -4px;
+                right: -12px;
+                min-width: 40px;
+                padding: 10px;
+                border-radius: 4px;
+                background-color: $main-color;
+                z-index: -1;
+            }
+        }
+    }
+    .blur{
+        // filter: url(blur.svg#blur); /* FireFox, Chrome, Opera */
+        
+        -webkit-filter: blur(10px); /* Chrome, Opera */
+           -moz-filter: blur(10px);
+            -ms-filter: blur(10px);    
+                filter: blur(10px);
+        
+        // filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false); /* IE6~IE9 */
+    }
+    i.mu-icon {
+        color: $icon-color;
+    }
+    .mu-text-field.focus-state{
+        color: $main-color !important;
+    }
+    .mu-text-field-focus-line{
+        color: $main-color !important;
+        background-color: $main-color !important;
+    }
+    .mu-checkbox input[type=checkbox]:checked + .mu-checkbox-wrapper .mu-checkbox-ripple-wrapper{
+        color: $main-color;
+    }
+    .mu-checkbox input[type=checkbox]:checked + .mu-checkbox-wrapper .mu-checkbox-icon-uncheck{
+        color: $main-color;
+    }
+    .mu-checkbox-icon-checked{
+        color: $main-color;
+    }
+    .mu-checkbox-icon-uncheck{
+        color: $icon-color;
+    }
+    .mu-tabs{
+        background-color: #fff;
+        @include box-shadow(0 1px 5px rgba(0,0,0,0.1));
+        .mu-tab-text{
+            color: $font-color;
+        }
+        .mu-tab-active .mu-tab-text{
+            color: $main-color;
+        }
+    }
+    .mu-tab-link-highlight{
+        background-color: $main-color;
+    }
+    .svg-icon{
+        fill: $icon-color;
+        width: 24px;
+        height: 24px;
+    }
+    .mu-radio input[type=radio]:checked + .mu-radio-wrapper .mu-radio-icon-uncheck{
+        color: $main-color;
+    }
+    .mu-radio-icon-checked{
+        color: $main-color;
+    }
+    .mu-radio-icon{
+        margin-right: 10px;
+    }
+}
+
+
+
+

@@ -25,7 +25,6 @@
   </div>
 </template>
 <script>
-import { eventHub } from '../eventHub.vue';
 import share from '../common/share.vue';
 export default {
   components: {

@@ -17,7 +17,6 @@ import personEdit from './components/person/edit.vue';
 import Router from 'vue-router';
 import MuseUI from 'muse-ui';
 import 'muse-ui/dist/muse-ui.css';
-import { eventHub } from './components/eventHub';
 
 Vue.use(Router);
 Vue.use(MuseUI);

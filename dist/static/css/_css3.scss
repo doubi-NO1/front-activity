@@ -1,0 +1,415 @@
+@charset "UTF-8";
+//-----------------------------------------------------
+// css3 scss
+// 整理常用的一些 css3 属性
+//-----------------------------------------------------
+
+// prefixer
+// 用于在属性上加前缀，默认输出 webkit，moz 和标准
+@mixin prefixer($property, $value, $prefixes: webkit moz) {
+    @each $prefix in $prefixes {
+        @if $prefix == webkit and $prefixWebkit {
+            -webkit-#{$property}: $value;
+        } @else if $prefix == moz and $prefixMoz {
+            -moz-#{$property}: $value;
+        } @else if $prefix == ms and $prefixMs {
+            -ms-#{$property}: $value;
+        }
+    }
+    @if $prefixNo {
+        #{$property}: $value;
+    }
+}
+
+// prefixer-value
+// 用于在值上加前缀，默认输出 webkit，moz 和标准
+@mixin prefixer-value($property, $value, $prefixes: webkit moz) {
+    @each $prefix in $prefixes {
+        @if $prefix == webkit and $prefixWebkit {
+            #{$property}: -webkit-#{$value};
+        } @else if $prefix == moz and $prefixMoz {
+            #{$property}: -moz-#{$value};
+        } @else if $prefix == ms and $prefixMs {
+            #{$property}: -ms-#{$value};
+        }
+    }
+    @if $prefixNo {
+        #{$property}: $value;
+    }
+}
+
+@mixin user-select($value: text) {
+    // none | text | all | element
+    @include prefixer(user-select, $value, webkit moz ms);
+}
+
+@mixin box-sizing($value: border-box) {
+    // border-box | content-box
+    @include prefixer(box-sizing, $value);
+}
+
+@mixin box-shadow($value...) {
+    @include prefixer(box-shadow, $value);
+}
+
+@mixin background-origin($value...) {
+    // padding-box | border-box | content-box
+    @if length($value) >= 1 {
+        @include prefixer(background-origin, $value)
+    } @else {
+        @include prefixer(background-origin, border-box);
+    }
+}
+
+@mixin background-size($value...) {
+    // auto | 100px | 50% | cover | contain
+    @if length($value) >= 1 {
+        @include prefixer(background-size, $value);
+    } @else {
+        @include prefixer(background-size, cover);
+    }
+}
+
+@mixin background-clip($value...) {
+    // border-box | padding-box | content-box | text
+    @if length($value) >= 1 {
+        @include prefixer(background-clip, $value);
+    } @else {
+        @include prefixer(background-clip, padding-box);
+    }
+}
+
+// linear-gradient(90deg, #f00 0%, #0ff 50%, #0f0 100%)
+// 无需使用 top 或 to top 之类的，直接使用角度，比如 0deg | 90deg
+@mixin linear-gradient($gradient...) {
+    @include prefixer-value(background-image, linear-gradient($gradient));
+    @if $filter {
+        @if (removeUnit(nth($gradient, 1)) > 45 and removeUnit(nth($gradient, 1)) < 135) or (removeUnit(nth($gradient, 1)) > 225 and removeUnit(nth($gradient, 1)) < 315) {
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str(nth(nth($gradient, 2), 1))}', endColorstr='#{ie-hex-str(nth(nth($gradient, length($gradient)), 1))}', gradientType=1);
+        } @else {
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str(nth(nth($gradient, 2), 1))}', endColorstr='#{ie-hex-str(nth(nth($gradient, length($gradient)), 1))}', gradientType=0);
+        }
+    }
+}
+
+// repeating-linear-gradient(0deg, #f00, #ff0 10%, #f00 15%)
+// 无需使用 top 或 to top 之类的，直接使用角度，比如 0deg | 90deg
+@mixin repeating-linear-gradient($gradient...) {
+    @include prefixer-value(background-image, repeating-linear-gradient($gradient));
+    @if $filter {
+        @if (removeUnit(nth($gradient, 1)) > 45 and removeUnit(nth($gradient, 1)) < 135) or (removeUnit(nth($gradient, 1)) > 225 and removeUnit(nth($gradient, 1)) < 315) {
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str(nth(nth($gradient, 2), 1))}', endColorstr='#{ie-hex-str(nth(nth($gradient, length($gradient)), 1))}', gradientType=1);
+        } @else {
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str(nth(nth($gradient, 2), 1))}', endColorstr='#{ie-hex-str(nth(nth($gradient, length($gradient)), 1))}', gradientType=0);
+        }
+    }
+}
+@function removeUnit($num) {
+    @return $num / ($num * 0 + 1);
+}
+
+@mixin transform($property...) {
+    @include prefixer(transform, $property, webkit moz ms);
+}
+
+@mixin transform-origin($axis...) {
+    // x-axis: left | center | right | length | %
+    // y-axis: top | center | bottom | length | %
+    // z-axis: length
+    @include prefixer(transform-origin, $axis, webkit moz ms);
+}
+
+@mixin transform-style($style: preserve-3d) {
+    // $style: flat | preserve-3d
+    @include prefixer(transform-style, $style);
+}
+%transform-style {
+    @include transform-style;
+}
+
+@mixin matrix($args...){
+    @include transform(matrix($args));
+}
+@mixin matrix3d($args...){
+    @include transform(matrix3d($args));
+}
+
+@mixin translate($value...) {
+    @include transform(translate($value));
+}
+@mixin translate3d($value...) {
+    @include transform(translate3d($value));
+}
+@mixin translateX($value) {
+    @include transform(translateX($value));
+}
+@mixin translateY($value) {
+    @include transform(translateY($value));
+}
+@mixin translateZ($value) {
+    @include transform(translateZ($value));
+}
+
+@mixin rotate($angle) {
+    @include transform(rotate($angle));
+}
+@mixin rotate3d($angle...) {
+    @include transform(rotate3d($angle));
+}
+@mixin rotateX($angle) {
+    @include transform(rotateX($angle));
+}
+@mixin rotateY($angle) {
+    @include transform(rotateY($angle));
+}
+@mixin rotateZ($angle) {
+    @include transform(rotateZ($angle));
+}
+
+@mixin scale($ratio...) {
+    @include transform(scale($ratio));
+}
+@mixin scale3d($ratio...) {
+    @include transform(scale3d($ratio));
+}
+@mixin scaleX($ratio) {
+    @include transform(scaleX($ratio));
+}
+@mixin scaleY($ratio) {
+    @include transform(scaleY($ratio));
+}
+@mixin scaleZ($ratio) {
+    @include transform(scaleZ($ratio));
+}
+
+// skew 时一般会有锯齿什么的，解决方法是添加 backface-visibility 为 hidden
+// 详见 https://github.com/twitter/bootstrap/issues/5319
+@mixin skew($angle...) {
+    @include transform(skew($angle));
+    @include backface-visibility;
+}
+@mixin skewX($angle) {
+    @include transform(skewX($angle));
+    @include backface-visibility;
+}
+@mixin skewY($angle) {
+    @include transform(skewY($angle));
+    @include backface-visibility;
+}
+
+@mixin perspective($value: none) {
+    // $value: none | number
+    @include prefixer(perspective, $value);
+}
+%perspective {
+    @include perspective;
+}
+
+@mixin perspective-origin($axis...) {
+    // x-axis: left | center | right | length | %
+    // y-axis: top | center | bottom | length | %
+    @include prefixer(perspective-origin, $axis);
+}
+
+@mixin backface-visibility($visibility: hidden) {
+    // $visibility: visible | hidden
+    @include prefixer(backface-visibility, $visibility, webkit moz ms);
+}
+%backface-visibility {
+    @include backface-visibility;
+}
+
+@mixin transition($values...) {
+    // 不适合带有 transform 的过渡，如 transform 过渡，请使用 all 或者拆分 transition 属性
+    @include prefixer(transition, $values);
+}
+
+@mixin transition-property($props...) {
+    @if $prefixWebkit {
+        -webkit-transition-property: transitionPropertyNames($props, webkit);
+    }
+    @if $prefixMoz {
+        -moz-transition-property: transitionPropertyNames($props, moz);
+    }
+    transition-property: transitionPropertyNames($props);
+}
+@function transitionPropertyName($prop, $prefix) {
+    @if $prop == transform {
+        @if $prefix == webkit and $prefixWebkit {
+            @return unquote('-webkit-' + $prop);
+        }
+        @if $prefix == moz and $prefixMoz {
+            @return unquote('-moz-' + $prop);
+        }
+        @if $prefix == no and $prefixNo {
+            @return $prop;
+        }
+    } @else {
+        @return $prop;
+    }
+}
+@function transitionPropertyNames($props, $prefix: no) {
+    $new-props: ();
+    @each $prop in $props {
+        $new-props: append($new-props, transitionPropertyName($prop, $prefix), comma);
+    }
+    @return $new-props;
+}
+
+@mixin transition-duration($times...) {
+    @include prefixer(transition-duration, $times);
+}
+
+@mixin transition-timing-function($motions...) {
+    @include prefixer(transition-timing-function, $motions);
+}
+
+@mixin transition-delay($times...) {
+    @include prefixer(transition-delay, $times);
+}
+
+@mixin animation ($animations...) {
+    @include prefixer(animation, $animations);
+}
+
+@mixin animation-name ($names...) {
+    @include prefixer(animation-name, $names);
+}
+
+@mixin animation-duration ($times...) {
+    @include prefixer(animation-duration, $times);
+}
+
+@mixin animation-timing-function ($motions...) {
+    @include prefixer(animation-timing-function, $motions);
+}
+
+@mixin animation-delay ($times...) {
+    @include prefixer(animation-delay, $times);
+}
+
+@mixin animation-iteration-count ($count...) {
+    // infinite | <number>
+    @if length($count) >= 1 {
+        @include prefixer(animation-iteration-count, $count);
+    } @else {
+        @include prefixer(animation-iteration-count, infinite);
+    }
+}
+
+@mixin animation-direction ($directions...) {
+    // normal | reverse | alternate | alternate-reverse
+    @include prefixer(animation-direction, $directions);
+}
+
+@mixin animation-play-state ($states...) {
+    // running | paused
+    @if length($states) >= 1 {
+        @include prefixer(animation-play-state, $states);
+    } @else {
+        @include prefixer(animation-play-state, paused);
+    }
+}
+
+@mixin animation-fill-mode ($modes...) {
+    // none | forwards | backwards | both
+    @if length($modes) >= 1 {
+        @include prefixer(animation-fill-mode, $modes);
+    } @else {
+        @include prefixer(animation-fill-mode, forwards);
+    }
+}
+
+@mixin keyframes($name, $prefixes: webkit moz) {
+    @each $prefix in $prefixes {
+        @if $prefix == webkit and $prefixWebkit {
+            @-webkit-keyframes #{$name} {
+                @content;
+            }
+        }
+        @if $prefix == moz and $prefixMoz {
+            @-moz-keyframes #{$name} {
+                @content;
+            }
+        }
+        @if $prefix == ms and $prefixMs {
+            @-ms-keyframes #{$name} {
+                @content;
+            }
+        }
+    }
+    @if $prefixNo {
+        @keyframes #{$name} {
+            @content;
+        }
+    }
+}
+
+@mixin columns($value) {
+    // width | count | width && count
+    @include prefixer(columns, $value);
+}
+
+@mixin column-width($width: auto) {
+    @include prefixer(column-width, $width);
+}
+
+@mixin column-count($count: auto) {
+  @include prefixer(column-count, $count);
+}
+
+@mixin column-gap($gap: normal) {
+    // normal | length
+    @include prefixer(column-gap, $gap);
+}
+
+@mixin column-rule($value) {
+    @include prefixer(column-rule, $value);
+}
+
+@mixin column-rule-width ($width: none) {
+    @include prefixer(column-rule-width, $width);
+}
+
+@mixin column-rule-style($style: none) {
+    @include prefixer(column-rule-style, $style);
+}
+
+@mixin column-rule-color($color) {
+    @include prefixer(column-rule-color, $color);
+}
+
+@mixin column-span($value: none) {
+    @include prefixer(column-span, $arg);
+}
+
+@mixin column-fill($fill: balance) {
+    @include prefixer(columns-fill, $fill);
+}
+
+@mixin font-face($fontFamily, $filePath, $fontStyle: normal, $fontWeight: normal) {
+    @font-face {
+        font-style: $fontStyle;
+        font-weight: $fontWeight;
+        font-family: $fontFamily;
+        src: url('#{$filePath}.eot');
+        src: url('#{$filePath}.eot?#iefix')         format('eot'),
+             url('#{$filePath}.svg##{$fontFamily}') format('svg'),
+             url('#{$filePath}.woff')               format('woff'),
+             url('#{$filePath}.ttf')                format('truetype');
+    }
+}
+
+@mixin text-fill-color($color: transparent) {
+    @include prefixer(text-fill-color, $color, webkit);
+}
+
+@mixin text-stroke($value) {
+    // 1px red
+    @include prefixer(text-stroke, $value, webkit);
+}
+
+@mixin box-reflect($value: below){
+    // direction  offset  mask-box-image;
+    @include prefixer(box-reflect, $value, webkit);
+}

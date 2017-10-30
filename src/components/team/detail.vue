@@ -59,7 +59,6 @@
   </div>
 </template>
 <script>
-import { eventHub } from '../eventHub.vue';
 export default {
     data() {
         return {
