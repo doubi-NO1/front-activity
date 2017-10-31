@@ -32,3 +32,9 @@
 .mu-switch input[type=checkbox]:checked + .mu-switch-wrapper .mu-switch-track{
     background-color: $main-color;
 }
+.mu-bottom-nav-shift .mu-bottom-item-active .mu-bottom-item-text{
+    transform: scale(1) translate3d(0,-6px,0);
+    -webkit-transform: scale(1) translate3d(0,-6px,0);
+    -o-transform: scale(1) translate3d(0,-6px,0);
+    -ms-transform: scale(1) translate3d(0,-6px,0);
+}

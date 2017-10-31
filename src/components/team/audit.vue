@@ -82,7 +82,7 @@ export default {
       this.$root.eventHub.$emit('setAppbar',{
           title: '审核记录',
           isBack: true,
-          backUrl: '#/team/:'+this.groupId
+          backUrl: '#/team/'+this.groupId
       });
       this.$root.eventHub.$emit('showBottom',false);
   }

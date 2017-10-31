@@ -65,7 +65,7 @@ export default {
     this.$root.eventHub.$emit('setAppbar',{
         title: '讨论消息',
         isBack: true,
-        backUrl: '#/activity/:'+this.actId
+        backUrl: '#/activity/'+this.actId
     });
     this.$root.eventHub.$emit('showBottom',false);
   }

@@ -110,7 +110,7 @@ export default {
     this.$root.eventHub.$emit('setAppbar',{
         title: '精彩瞬间',
         isBack: true,
-        backUrl: '#/activity/:'+this.actId
+        backUrl: '#/activity/'+this.actId
     });
     this.$root.eventHub.$emit('showBottom',false);s
   }

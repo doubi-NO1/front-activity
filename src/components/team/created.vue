@@ -42,7 +42,7 @@ export default {
             this.$root.eventHub.$emit('setAppbar',{
                 title: '编辑信息',
                 isBack: true,
-                backUrl: '#/team/:'+this.groupId
+                backUrl: '#/team/'+this.groupId
             });
             // 请求团队信息进行赋值
             this.groupMsg = {

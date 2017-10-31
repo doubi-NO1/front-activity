@@ -12,14 +12,13 @@
                     <span v-for="(group,index) in groupLabel" :key="index" :id="group.id">{{group.labelName}}</span>
                 </div>
           </div>
-          <div class="detail-btn" @click="showDetail">
+          <!-- <div class="detail-btn" @click="showDetail">
                <mu-icon value="sort" color="white"/>
                <span>详情</span>
-          </div>
-          <div class="group-detail" v-show="isShowDetail" @click="showDetail">
-              <!-- <mu-icon value="clear" color="white" @click="showDetail"/> -->
+          </div> -->
+          <!-- <div class="group-detail" v-show="isShowDetail" @click="showDetail">
               <p>{{groupDetail}}</p>
-           </div>
+           </div> -->
       </div>
       <div class="team-detail-list">
           <mu-list>
@@ -35,6 +34,11 @@
                 </div>
                 <span class="group-member-number">{{groupNumber}}人</span>
                 <mu-icon value="chevron_right" slot="right" />
+            </mu-list-item>
+            <mu-divider />
+            <mu-list-item title="团队介绍" :href="'#/team/'+this.groupId +'/introduce'">
+                <mu-icon slot="left" value="list"/>
+                <mu-icon value="chevron_right" slot="right"/>
             </mu-list-item>
             <mu-divider />
             <mu-list-item title="邀请成员" :href="'#/team/'+this.groupId +'/invitation'">

@@ -7,6 +7,7 @@ import teamMember from './components/team/member.vue';
 import addMember from './components/team/add.vue';
 import teamAudit from './components/team/audit.vue';
 import teamCreated from './components/team/created.vue';
+import teamIntroduce from './components/team/introduce.vue';
 import activityList from './components/activities/list.vue';
 import activityDel from './components/activities/detail.vue';
 import activityComment from './components/activities/comment.vue';
@@ -54,6 +55,9 @@ let routes = [
 	},{
 		path: '/team/:id/edit',
 		component: teamCreated
+	},{
+		path: '/team/:id/introduce',
+		component: teamIntroduce
 	},{
 		path: '/activity',
 		component: activityList

@@ -63,7 +63,7 @@ export default {
         this.$root.eventHub.$emit('setAppbar',{
             title: '团队成员',
             isBack: true,
-            backUrl: '#/team/:'+this.groupId
+            backUrl: '#/team/'+this.groupId
         });
         this.$root.eventHub.$emit('showBottom',false);
     }
