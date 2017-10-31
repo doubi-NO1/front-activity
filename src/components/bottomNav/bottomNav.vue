@@ -33,6 +33,11 @@ export default {
         .mu-bottom-item-icon.mu-icon.material-icons {
             color: #fff;
         }
+        .svg-icon{
+            fill: $icon-color;
+            width: 24px;
+            height: 24px;
+        }
     }
 </style>
 
