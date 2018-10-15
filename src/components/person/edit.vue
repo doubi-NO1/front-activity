@@ -12,7 +12,7 @@
       <mu-text-field label="QQ" labelFloat v-model="qq"/>
       <mu-text-field label="地址" labelFloat v-model="address"/>
       <mu-text-field label="职业" labelFloat v-model="career"/>
-      <mu-raised-button label="完成编辑" class="edit-btn" fullWidth/>
+      <mu-raised-button label="完成编辑" class="edit-btn" @click="editUserMsg" fullWidth/>
   </div>
 </template>
 <script>
@@ -28,6 +28,11 @@ export default {
       qq: '1233435',
       address: '上海市浦东新区川沙'
     };
+  },
+  methods:{
+    editUserMsg(){
+
+    }
   },
   created() {
     this.$root.eventHub.$emit('setAppbar',{
